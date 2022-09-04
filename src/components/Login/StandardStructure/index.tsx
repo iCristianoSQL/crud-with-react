@@ -6,16 +6,17 @@ import logo from "../../../assets/img/logo.svg"
 
 import { LoginLayoutProps } from './types'
 
-const StandardStructure = ({ children }: LoginLayoutProps) => {
+const StandardStructure = ({ children, handleSubmit }: LoginLayoutProps) => {
     return (
         <S.Container>
             <div className='greetings'>
                 <img src={logo} alt="Logo" />
-                <span>Welcome back</span>
+                <span>Welcome to CodeLeap network!</span>
             </div>
-            <S.ChildrenContent>
+            <S.ChildrenContent onSubmit={handleSubmit}>
                 {children}
             </S.ChildrenContent>
+            <span className='clip-style' />
         </S.Container>
     )
 }

@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { motion } from "framer-motion"
+import { colors } from "../../../utils/colors";
 
 export const Container = styled(motion.section)`
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    position: relative;
     padding-top: 0.5rem;
+    gap: 5rem;
+    position: relative;
 
     @media(min-width: 420px){
         width: 375px;
@@ -32,12 +34,29 @@ export const Container = styled(motion.section)`
         flex-direction: column;
         align-items: center;
 
+        span {
+            text-transform: uppercase;
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1rem;
+        }
+
         img {
             width: 90%;
+            min-width: 280px;
             pointer-events: none;
         }
 
-    }    
+    }
+
+    .clip-style {
+        clip-path: polygon(0 75%, 51% 86%, 100% 100%, 0% 100%);
+        width: 100%;
+        height: 40%;
+        background: ${colors.primary[0]};
+        position: absolute;
+        bottom: 0;
+    }
 `
 
 export const ChildrenContent = styled.div`

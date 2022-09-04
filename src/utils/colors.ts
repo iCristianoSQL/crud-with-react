@@ -2,7 +2,9 @@ import { darken, transparentize } from "polished"
 
 export const colors = {
     primary: {
-        0: 'black',
+        0: '#000',
+        0.1: transparentize(0.6, '#000'),
+        0.2: darken(0.2, '#000'),
         1: '#FFFFFF',
         1.1: transparentize(0.6, '#FFFFFF'),
         1.2: darken(0.2, '#FFFFFF'),
