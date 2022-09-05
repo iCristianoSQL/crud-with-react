@@ -3,6 +3,17 @@ import { colors } from "../../utils/colors"
 
 import { IStyledTextInput } from "./types"
 
+export const Label = styled.label`
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.1rem;
+    color: ${colors.primary[0]};
+`
+
 export const TextInput = styled.input <IStyledTextInput>`
     outline: none;
     box-shadow: none;
@@ -10,7 +21,7 @@ export const TextInput = styled.input <IStyledTextInput>`
     border: 1px solid ${colors.primary[0.1]};
     background: transparent;
     color: ${colors.primary[0]};
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1rem;
     padding: 0 8px;
 

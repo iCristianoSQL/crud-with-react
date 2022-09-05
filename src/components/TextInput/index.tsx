@@ -8,17 +8,22 @@ export const TextInput: React.ForwardRefRenderFunction<HTMLInputElement, IStyled
   width,
   placeholder,
   type,
+  label,
   ...rest
 }, ref) => {
   return (
-    <S.TextInput
-      type={type}
-      height={height}
-      width={width}
-      placeholder={placeholder}
-      ref={ref}
-      {...rest}
-    />
+    <S.Label>
+      {label}
+      <S.TextInput
+        type={type}
+        height={height}
+        width={width}
+        placeholder={placeholder}
+        ref={ref}
+        label={label}
+        {...rest}
+      />
+    </S.Label>
   )
 }
 

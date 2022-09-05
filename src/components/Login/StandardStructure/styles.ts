@@ -62,7 +62,4 @@ export const Container = styled(motion.section)`
 export const ChildrenContent = styled.div`
     width: 100%;
     height: 'fit-content';
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 `

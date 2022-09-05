@@ -13,7 +13,7 @@ const genericTreatment = (length: number) => {
 
 export const toastMessage = ({ message, type }: IToastMessage) => {
     let toastType = {
-        type: type === 'success' ? toast.success : toast.error,
+        type: toast[type],
         emojis: type === 'success' ? successEmojis : errorEmojis,
     }
     toastType.type(`${message} ${toastType.emojis[genericTreatment(toastType.emojis.length)]}`)

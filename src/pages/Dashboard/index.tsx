@@ -1,7 +1,29 @@
 import React from 'react'
+import * as S from "./styles"
 
-export const Home = () => {
+import { IoMdExit } from 'react-icons/io';
+
+import withLayout from '../../hocs/Layout/layout';
+import { useNavigate } from 'react-router-dom';
+import { Navigation, RegisterPostage } from '../../components';
+
+
+const Home = () => {
+    const navigate = useNavigate()
+
+    const returnLogin = () => {
+        navigate('/')
+    }
     return (
-        <div>Home</div>
+        <S.Container>
+            <Navigation title='CodeLeap Network'>
+                <button onClick={returnLogin}>
+                    <IoMdExit />
+                </button>
+            </Navigation>
+            <RegisterPostage />
+        </S.Container>
     )
 }
+
+export default withLayout(Home);
