@@ -1,9 +1,9 @@
 import { Container, IconsDiv } from "./styles"
 import { INavigationProps } from './types';
 
-export const Navigation = ({ children, title }: INavigationProps) => {
+export const Navigation = ({ children, title, width }: INavigationProps) => {
     return (
-        <Container>
+        <Container width={width} title={title}>
             <b>{title}</b>
             <IconsDiv>
                 {children}

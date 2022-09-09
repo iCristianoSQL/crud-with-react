@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colors } from "../../utils/colors";
+import { ITextAreaStyle } from "./types";
 
 export const Label = styled.label`
     display: flex;
@@ -12,10 +13,17 @@ export const Label = styled.label`
     color: ${colors.primary[0]};
 `
 
-export const Text = styled.textarea`
+export const Text = styled.textarea<ITextAreaStyle>`
     padding: 0px 8px;
     width: 95%;
     height: 75px;
+
+    ${({ height, width }) =>
+        css`
+            height: ${height ?? '75px'};
+            width: ${width ?? '95%'};
+        `
+    }
 
     background: transparent;
     outline: none;
@@ -32,16 +40,5 @@ export const Text = styled.textarea`
     &::placeholder {
         font-weight: 500;
         opacity: 0.6;
-    }
-
-    &::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: ${colors.primary[0]};
-        border-radius: 5px;
-        border: 1px solid ${colors.primary[0]};
     }
 `

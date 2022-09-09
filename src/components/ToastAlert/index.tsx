@@ -8,7 +8,7 @@ export function ToastAlert({ ...rest }) {
             theme="colored"
             limit={2}
             position="bottom-right"
-            autoClose={5000}
+            autoClose={2500}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick

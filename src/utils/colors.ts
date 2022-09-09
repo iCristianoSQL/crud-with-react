@@ -8,6 +8,9 @@ export const colors = {
         1: '#FFFFFF',
         1.1: transparentize(0.6, '#FFFFFF'),
         1.2: darken(0.2, '#FFFFFF'),
+        2: '#777777',
+        2.1: transparentize(0.6, '#777777'),
+        2.2: transparentize(0.2, '#777777'),
     },
     danger: {
         0: '#a10000',

@@ -1,10 +1,27 @@
 import { createGlobalStyle } from "styled-components";
+import { colors } from "../utils/colors";
 
 export const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Roboto, Sans-Serif;
+  * {
+      margin: 0;
+      padding: 0;
+      font-family: Roboto, Sans-Serif;
+      overflow-x: hidden;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: ${colors.primary[0]};
+        border-radius: 5px;
+        border: 1px solid ${colors.primary[0]};
+      }
+  }
+  
+  html, body {
+    height: 100vh;
   }
 
   html {
@@ -57,4 +74,43 @@ export const GlobalStyle = createGlobalStyle`
     opacity: 0.6;
     cursor: not-allowed;
   }
+
+    .react-modal-overlay {
+        background: rgba(0, 0, 0, 0.5);
+        
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .react-modal-content {
+        width: 100%;
+        max-width: 660px;
+        background: ${colors.primary[1]};
+        padding: 1.8rem;
+        position: relative;
+        border-radius: 0.25rem;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .react-modal-close {
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        border: 0;
+        background: transparent;
+
+        transition: filter 0.2;
+
+        &:hover {
+            filter: brightness(0.9)
+        }
+    }
 `;

@@ -1,9 +1,9 @@
-import { TextareaHTMLAttributes } from "react";
-
-export interface ITextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-    label: string;
+import { TextareaHTMLAttributes, ChangeEvent } from "react";
+export interface ITextAreaStyle extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+    width?: string;
+    height?: string;
 }
-
-export interface ITextAreaStyle {
-
+export interface ITextAreaProps extends ITextAreaStyle {
+    label: string;
+    handleChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
 }

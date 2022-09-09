@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colors } from "../../../utils/colors";
+import { INavigationProps } from "./types";
 
-export const Container = styled.nav`
-    width: 800px;
+export const Container = styled.nav<INavigationProps>`
+    ${({ width }) => css` width: ${width ?? '800px'}`};
     height: 80px;
     background: ${colors.primary[0]};
 
@@ -36,4 +37,5 @@ export const Container = styled.nav`
 export const IconsDiv = styled.div`
     display: flex;
     align-items: center;
+    gap: 20px;
 `
