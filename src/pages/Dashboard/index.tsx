@@ -22,7 +22,6 @@ const Home = () => {
     const referenceId = useRef<number>(0)
 
     const productList = useSelector((state: IReduxState) => state.users.value)
-    console.log(productList)
 
     const returnLogin = () => {
         navigate('/login')
