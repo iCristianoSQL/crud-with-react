@@ -6,7 +6,6 @@ export const GlobalStyle = createGlobalStyle`
       margin: 0;
       padding: 0;
       font-family: Roboto, Sans-Serif;
-      overflow-x: hidden;
 
       &::-webkit-scrollbar {
         width: 5px;
@@ -98,6 +97,11 @@ export const GlobalStyle = createGlobalStyle`
         border-radius: 0.25rem;
         outline: none;
         box-shadow: none;
+
+        @media (max-width: 730px) {
+          width: 90%;
+          padding: 0.8rem;
+        }
     }
 
     .react-modal-close {

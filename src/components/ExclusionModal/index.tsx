@@ -5,44 +5,26 @@ import * as S from "./styles"
 
 import Modal from "react-modal"
 import { Button } from "../Button";
-import TextArea from "../TextArea";
-import TextInput from "../TextInput";
 
 import { IExclusionModalProps } from "./types";
 import { colors } from "../../utils/colors";
 import { toastMessage } from "../../utils/toastMessage";
 
 import { useDispatch } from "react-redux"
-import { updateUserName } from "../../features/Users";
+import { deleteUser } from "../../features/Users";
 
-const ExclusionModal = ({ isOpen, id, onRequestClose, handleCloseModal }: IExclusionModalProps) => {
-    const [inputValue, setInputValue] = useState('')
-    const [textValue, setTextValue] = useState('')
+export const ExclusionModal = ({ isOpen, id, onRequestClose, handleCloseModal }: IExclusionModalProps) => {
 
     const dispatch = useDispatch()
 
-    const CardsValue = {
-        getInputValue: (event: ChangeEvent<HTMLInputElement>) => {
-            setInputValue(event.target.value)
-        },
+    const handleRemove = () => {
+        dispatch(deleteUser({ id: id }))
 
-        getTextValue: (event: ChangeEvent<HTMLTextAreaElement>) => {
-            setTextValue(event.target.value)
-        }
-    }
-
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault()
-
-        dispatch(updateUserName({ id: id, title: inputValue, content: textValue }))
-        setTextValue('')
-        setInputValue('')
-
-        handleCloseModal()
         toastMessage({
-            message: 'Updated task',
-            type: 'success'
+            message: 'Task removed',
+            type: 'error'
         })
+        handleCloseModal()
     }
 
     return (
@@ -52,30 +34,27 @@ const ExclusionModal = ({ isOpen, id, onRequestClose, handleCloseModal }: IExclu
             overlayClassName='react-modal-overlay'
             className='react-modal-content'
         >
-            <S.Container onSubmit={handleSubmit}>
-                <h3>Edit item</h3>
-                <TextInput
-                    label="Title"
-                    type="text"
-                    width="100%"
-                    className="title-input"
-                    onChange={CardsValue.getInputValue}
-
-                />
-                <TextArea label="Content" width="100%" onChange={CardsValue.getTextValue} />
-                <Button
-                    width="110px"
-                    height="30px"
-                    type="submit"
-                    color={colors.primary[1]}
-                    background={colors.primary[0]}
-                    disabled={!inputValue && !textValue}
-                >
-                    Save
-                </Button>
+            <S.Container>
+                <h3>Are you sure you want to delete this item?</h3>
+                <div className='button-box'>
+                    <Button
+                        width="110px"
+                        height="30px"
+                        type="submit"
+                        onClick={handleCloseModal}
+                    >
+                        Cancel
+                    </Button>
+                    <Button
+                        width="110px"
+                        height="30px"
+                        type="submit"
+                        onClick={handleRemove}
+                    >
+                        Ok
+                    </Button>
+                </div>
             </S.Container>
         </Modal >
     )
 }
-
-export default ExclusionModal

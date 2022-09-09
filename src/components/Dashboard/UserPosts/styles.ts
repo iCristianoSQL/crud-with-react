@@ -1,15 +1,24 @@
 import styled from "styled-components";
 import { colors } from "../../../utils/colors";
 
+import { motion } from "framer-motion";
+
 export const Content = styled.div`
     height: fit-content;
     max-height: 450px;
-    min-height: 150px;
+    min-height: 200px;
     overflow: auto;
     width: 90%;
     max-width: 800px;
     margin-top: 45px;
     border: 1px solid ${colors.primary[0.1]};
+
+    .delete-task {
+           svg:hover {
+                fill: red !important;
+                transition: 0.5s;
+           } 
+    }
 
     .user-infos {
         margin-top: 23px;

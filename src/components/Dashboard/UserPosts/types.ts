@@ -6,5 +6,5 @@ export interface IEmptyPost {
     title: string;
     content: string;
     children: ReactNode;
-    time: string;
+    time: string | undefined;
 }

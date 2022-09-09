@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 
 import * as S from "./styles"
 
-import { UserPosts, Navigation, RegisterPostage, EmptyPost, ExclusionModal, Button } from '../../components';
+import { UserPosts, Navigation, RegisterPostage, EmptyPost, EditModal } from '../../components';
 import withLayout from '../../hocs/Layout/layout';
 
 import { IoMdExit } from 'react-icons/io';
@@ -18,27 +18,41 @@ import dayjs from 'dayjs';
 
 const Home = () => {
     const navigate = useNavigate()
-    const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false)
+    const [isEditModal, setIsEditModal] = useState(false)
     const referenceId = useRef<number>(0)
 
     const productList = useSelector((state: IReduxState) => state.users.value)
+    console.log(productList)
 
     const returnLogin = () => {
         navigate('/login')
     }
 
-    const handleOpenExclusionModal = () => {
-        setIsNewTransactionModalOpen(true)
+    const SetModal = {
+        handleOpenEditModal: () => {
+            setIsEditModal(true)
+
+        },
+        handleCloseEditModal: () => {
+            setIsEditModal(false)
+        }
     }
 
-    const handleCloseExclusionModal = () => {
-        setIsNewTransactionModalOpen(false)
+    function getDate(date: Date) {
+        const diffDate = dayjs().diff(date, 'minutes')
+
+        if (diffDate < 60) {
+            return (diffDate + 1) + ' minutes ago'
+        } else {
+            const minutes = dayjs().diff(date, 'hours')
+            return minutes + ' hours ago'
+        }
     }
 
     return (
         <>
             <S.Container>
-                <Navigation title='CodeLeap Network'>
+                <Navigation title='CodeLeap Network' className="dashboard-navigation">
                     <button onClick={returnLogin}>
                         <IoMdExit />
                     </button>
@@ -54,16 +68,21 @@ const Home = () => {
                                         name={event.userName}
                                         title={event.title}
                                         content={event.content}
-                                        time={dayjs(event.createdAt).format('mm')}
+                                        time={getDate(event.createdAt)}
                                     >
                                         <button onClick={() => {
-                                            handleOpenExclusionModal();
+                                            SetModal.handleOpenEditModal();
                                             referenceId.current = event.id
-                                        }}> {/* da pra melhorar */}
+                                        }}>
                                             <FaEdit />
                                         </button>
                                     </UserPosts>
-                                    <ExclusionModal id={referenceId.current} isOpen={isNewTransactionModalOpen} onRequestClose={handleCloseExclusionModal} handleCloseModal={handleCloseExclusionModal} />
+                                    <EditModal
+                                        id={referenceId.current}
+                                        isOpen={isEditModal}
+                                        onRequestClose={SetModal.handleCloseEditModal}
+                                        handleCloseModal={SetModal.handleCloseEditModal}
+                                    />
                                 </>
                             )
                         }).reverse()}

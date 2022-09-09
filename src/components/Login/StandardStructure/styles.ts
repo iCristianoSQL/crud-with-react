@@ -52,10 +52,14 @@ export const Container = styled(motion.section)`
     .clip-style {
         clip-path: polygon(0 75%, 51% 86%, 100% 100%, 0% 100%);
         width: 100%;
-        height: 40%;
+        height: 100%;
         background: ${colors.primary[0]};
         position: absolute;
         bottom: 0;
+
+        @media (min-width: 420px) {
+            height: 40%;
+        }
     }
 `
 

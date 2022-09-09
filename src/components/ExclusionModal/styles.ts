@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const Container = styled.form`
+export const Container = styled.div`
     background-color: white;
     border: none;
     box-shadow: none;
@@ -8,15 +8,11 @@ export const Container = styled.form`
     display: flex;
     flex-direction: column;
 
-    h3 {
-        margin-bottom: 24px;
+    .button-box {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 3rem;
     }
 
-    label {
-        margin-bottom: 20px;
-    }
-
-    button {
-        align-self: end;
-    }
 `
