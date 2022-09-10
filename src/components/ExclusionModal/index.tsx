@@ -1,13 +1,10 @@
 
-import { FormEvent, ChangeEvent, useState } from "react"
-
 import * as S from "./styles"
 
 import Modal from "react-modal"
 import { Button } from "../Button";
 
 import { IExclusionModalProps } from "./types";
-import { colors } from "../../utils/colors";
 import { toastMessage } from "../../utils/toastMessage";
 
 import { useDispatch } from "react-redux"

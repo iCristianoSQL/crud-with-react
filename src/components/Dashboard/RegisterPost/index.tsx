@@ -1,10 +1,15 @@
 import { FormEvent, ChangeEvent, useState } from 'react'
+
 import { Container, InputsContent } from './styles'
+
 import { TextInput, Button } from '../../../components'
 import { TextArea } from "../../index"
+
 import { colors } from '../../../utils/colors';
+
 import { IPosts } from './types';
 import { toastMessage } from '../../../utils/toastMessage';
+
 import { useSelector, useDispatch } from "react-redux"
 import { addUser } from '../../../features/Users';
 import { IReduxState } from '../../../interfaces/reduxState';

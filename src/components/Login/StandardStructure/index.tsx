@@ -2,7 +2,7 @@ import withLayout from '../../../hocs/Layout/layout'
 
 import * as S from './styles'
 
-import logo from "../../../assets/img/logo.svg"
+import logo from "../../../assets/svg/logo.svg"
 
 import { LoginLayoutProps } from './types'
 

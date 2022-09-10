@@ -1,60 +1,105 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 
-import { Navigation } from '../..'
+import { Navigation } from '../Navigation'
 
 import { Content } from './styles'
-import { IEmptyPost } from './types'
 
 import { RiDeleteBin7Fill } from 'react-icons/ri'
-import { ExclusionModal } from "../../index"
+import { FaEdit } from "react-icons/fa"
 
-export const UserPosts = ({
-    title,
-    children,
-    name,
-    id,
-    content,
-    time,
-}: IEmptyPost) => {
+import { useSelector } from "react-redux"
+import { IReduxState } from "../../../interfaces/reduxState"
+
+import { ExclusionModal } from "../../ExclusionModal"
+import { EditModal } from "../../EditModal"
+import { ISetModalProps } from "./types"
+
+import dayjs from "dayjs"
+
+export const UserPost = () => {
     const userName = window.localStorage.getItem('@userName')
-    const isEditable = userName === name;
-    const [osExcluseModal, setIsExcluseModal] = useState(false)
 
-    const SetModal = {
-        handleOpenExcluseModal: () => {
-            setIsExcluseModal(true)
+    const productList = useSelector((state: IReduxState) => state.users.value)
+    const referenceId = useRef<number>(0)
 
+    const [isExcluseModal, setIsExcluseModal] = useState(false)
+    const [isEditModal, setIsEditModal] = useState(false)
+
+    const setModal: ISetModalProps = {
+        setModalEdit: {
+            handleOpenEditModal: () => {
+                setIsEditModal(true)
+
+            },
+            handleCloseEditModal: () => {
+                setIsEditModal(false)
+            }
         },
-        handleCloseExcluseModal: () => {
-            setIsExcluseModal(false)
+        setModalExcluse: {
+            handleOpenExcluseModal: () => {
+                setIsExcluseModal(true)
+
+            },
+            handleCloseExcluseModal: () => {
+                setIsExcluseModal(false)
+            }
+        }
+    }
+
+
+    function getDate(date: Date) {
+        const diffDate = dayjs().diff(date, 'minutes')
+
+        if (diffDate < 60) {
+            return (diffDate + 1) + ` minute${diffDate === 0 ? '' : 's'} ago`
+        } else {
+            const minutes = dayjs().diff(date, 'hours')
+            return minutes + ` hour${diffDate <= 600 ? '' : 's'} ago`
         }
     }
 
     return (
         <>
-            <Content>
-                <Navigation title={title} width='100%'>
-                    {isEditable &&
-                        <>
-                            <button className='delete-task' onClick={SetModal.handleOpenExcluseModal}>
-                                <RiDeleteBin7Fill />
-                            </button>
-                            {children}
-                        </>
-                    }
-
-                </Navigation>
-                <div className='user-infos'>
-                    <span>@{name}</span>
-                    <span>{time}</span>
-                </div>
-                <p className='content'>{content}</p>
-            </Content>
+            {productList.map((event) => {
+                return (
+                    <Content>
+                        <Navigation title={event.title} width='100%'>
+                            {userName === event.userName &&
+                                <>
+                                    <button className='delete-task' onClick={() => {
+                                        setModal.setModalExcluse.handleOpenExcluseModal();
+                                        referenceId.current = event.id;
+                                    }}>
+                                        <RiDeleteBin7Fill />
+                                    </button>
+                                    <button onClick={() => {
+                                        setModal.setModalEdit.handleOpenEditModal();
+                                        referenceId.current = event.id;
+                                    }}>
+                                        <FaEdit />
+                                    </button>
+                                </>
+                            }
+                        </Navigation>
+                        <div className='user-infos'>
+                            <span>@{event.userName}</span>
+                            <span>{getDate(event.createdAt)}</span>
+                        </div>
+                        <p className='content'>{event.content}</p>
+                    </Content>
+                )
+            }).reverse()}
             <ExclusionModal
-                id={id}
-                isOpen={osExcluseModal}
-                handleCloseModal={SetModal.handleCloseExcluseModal}
-                onRequestClose={SetModal.handleCloseExcluseModal}
+                id={referenceId.current}
+                isOpen={isExcluseModal}
+                handleCloseModal={setModal.setModalExcluse.handleCloseExcluseModal}
+                onRequestClose={setModal.setModalExcluse.handleCloseExcluseModal}
+            />
+            <EditModal
+                id={referenceId.current}
+                isOpen={isEditModal}
+                onRequestClose={setModal.setModalEdit.handleCloseEditModal}
+                handleCloseModal={setModal.setModalEdit.handleCloseEditModal}
             />
         </>
     )

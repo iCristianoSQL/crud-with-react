@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect, FormEvent } from 'react'
+import { useRef, useCallback, useEffect, FormEvent } from 'react'
 
 import { Button, TextInput, StandardStructure } from '../../components'
 

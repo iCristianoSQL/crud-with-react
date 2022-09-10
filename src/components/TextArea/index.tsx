@@ -1,5 +1,7 @@
 import React, { forwardRef } from 'react'
+
 import { Text, Label } from './styled'
+
 import { ITextAreaProps } from './types'
 
 const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, ITextAreaProps> = ({
