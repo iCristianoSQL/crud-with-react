@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../../utils/colors";
 
-import { motion } from "framer-motion";
-
 export const Content = styled.div`
     height: fit-content;
     max-height: 450px;

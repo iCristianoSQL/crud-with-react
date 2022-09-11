@@ -13,6 +13,7 @@ import { toastMessage } from '../../../utils/toastMessage';
 import { useSelector, useDispatch } from "react-redux"
 import { addUser } from '../../../features/Users';
 import { IReduxState } from '../../../interfaces/reduxState';
+import dayjs from 'dayjs';
 
 export const RegisterPostage = () => {
     const [inputValue, setInputValue] = useState('')
@@ -20,7 +21,7 @@ export const RegisterPostage = () => {
 
     const productList = useSelector((state: IReduxState) => state.users.value)
     const dispatch = useDispatch()
-
+    console.log(inputValue.length)
     const userName = window.localStorage.getItem('@userName') ?? ''
 
     const CardsValue = {
@@ -63,6 +64,7 @@ export const RegisterPostage = () => {
                     spellCheck='false'
                     label='Title'
                     value={inputValue}
+                    maxLength={38}
                     onChange={CardsValue.getInputValue}
                 />
                 <TextArea

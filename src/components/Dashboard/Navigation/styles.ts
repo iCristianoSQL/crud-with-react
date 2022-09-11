@@ -5,7 +5,7 @@ import { INavigationProps } from "./types";
 export const Container = styled.nav<INavigationProps>`
     ${({ width }) => css` width: ${width ?? '800px'}`};
     padding: 0.5rem 0rem;
-    min-height: 80px;
+    min-height: 5rem;
     min-width: 320px;
     background: ${colors.primary[0]};
 

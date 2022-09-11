@@ -62,7 +62,7 @@ export const UserPost = () => {
         <>
             {productList.map((event) => {
                 return (
-                    <Content>
+                    <Content key={event.id}>
                         <Navigation title={event.title} width='100%'>
                             {userName === event.userName &&
                                 <>
