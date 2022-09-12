@@ -60,6 +60,7 @@ export const EditModal = ({ isOpen, id, onRequestClose, handleCloseModal }: IEdi
                     width="95%"
                     className="title-input"
                     onChange={CardsValue.getInputValue}
+                    maxLength={20}
 
                 />
                 <TextArea label="Content" width="95%" onChange={CardsValue.getTextValue} />

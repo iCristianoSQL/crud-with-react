@@ -2,9 +2,8 @@ import styled from "styled-components";
 import { colors } from "../../../utils/colors";
 
 export const Content = styled.div`
-    height: fit-content;
     max-height: 450px;
-    min-height: 200px;
+    min-height: 350px;
     overflow: auto;
     width: 90%;
     max-width: 800px;
@@ -32,11 +31,18 @@ export const Content = styled.div`
 
     .content {
         margin-top: 7px;
-        padding: 10px 30px;
-
+        align-self: center;
+        height: 180px;
+        border: none;
+        box-shadow: none;
         color: ${colors.primary[0]};
         font-weight: 400;
         font-size: 18px;
         line-height: 21px;
+
+        &:disabled {
+            opacity: 1;
+            cursor: auto;
+        }
     }
 `

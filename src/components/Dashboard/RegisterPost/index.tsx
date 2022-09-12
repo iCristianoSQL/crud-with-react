@@ -64,7 +64,7 @@ export const RegisterPostage = () => {
                     spellCheck='false'
                     label='Title'
                     value={inputValue}
-                    maxLength={38}
+                    maxLength={20}
                     onChange={CardsValue.getInputValue}
                 />
                 <TextArea

@@ -15,6 +15,7 @@ import { EditModal } from "../../EditModal"
 import { ISetModalProps } from "./types"
 
 import dayjs from "dayjs"
+import TextArea from "../../TextArea"
 
 export const UserPost = () => {
     const userName = window.localStorage.getItem('@userName')
@@ -85,7 +86,14 @@ export const UserPost = () => {
                             <span>@{event.userName}</span>
                             <span>{getDate(event.createdAt)}</span>
                         </div>
-                        <p className='content'>{event.content}</p>
+                        <TextArea
+                            className='content'
+                            width="90%"
+                            height="fit-content"
+                            disabled
+                        >
+                            {event.content}
+                        </TextArea>
                     </Content>
                 )
             }).reverse()}

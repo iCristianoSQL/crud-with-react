@@ -4,6 +4,6 @@ export interface ITextAreaStyle extends TextareaHTMLAttributes<HTMLTextAreaEleme
     height?: string;
 }
 export interface ITextAreaProps extends ITextAreaStyle {
-    label: string;
+    label?: string;
     handleChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
 }
