@@ -21,7 +21,6 @@ export const RegisterPostage = () => {
 
     const productList = useSelector((state: IReduxState) => state.users.value)
     const dispatch = useDispatch()
-    console.log(inputValue.length)
     const userName = window.localStorage.getItem('@userName') ?? ''
 
     const CardsValue = {
